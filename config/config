@@ -1,0 +1,8 @@
+TERMINAL='st'
+BROWSER='chromium'
+
+# Launch a terminal
+map term      $TERMINAL
+
+# Launch a web browser
+map br        $BROWSER
