@@ -57,26 +57,17 @@ void usage() { printf("%s options\n", app_name); }
 
 void exec_mapping(map_t* map)
 {
-  /*extern char** environ;*/
-  const char* args = map->cmd;
-  int ret = 0;
-  int pid = -1;
+  const char* args[] = {
+    map->cmd,
+    NULL
+  };
 
-  /*for (int i = 0; environ[i]; ++i) {*/
-    /*printf("%s\n", environ[i]);*/
-  /*}*/
-
-  /*printf("%s\n", getenv("PATH"));*/
-
-  pid = fork();
+  int pid = fork();
   if (pid == -1) {
     perror("fork");
   }
   else if (pid == 0) {
-    ret = execlp(map->cmd, args, NULL);
-    if (ret) {
-      perror("execve");
-    }
+    execlp(map->cmd, *args, NULL);
   } 
 }
 
